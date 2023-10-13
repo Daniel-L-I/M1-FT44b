@@ -14,24 +14,90 @@ Secuencia:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 Como ejercicio adicional y completamente opcional, al terminar de resolver este problema pueden intentar definir funciones que logren los mismos resultados pero de manera iterativa.
 */
 
-function nFactorial(n) {}
+function nFactorial(n) {
+  // entero no negativo
+  if (n === 0) {
+    return 1
+  } else {
+    return n * nFactorial(n - 1)
+  }
+  // forma de la profe
+  // if (n < 0) return 'Solo numeros naturales'
+  // if (n <= 1) return 1
+  // returnn * nFactorial(n - 1)
 
-function nFibonacci(n) {}
+}
+
+console.log(nFactorial(5));
+console.log(nFactorial(3));
+
+function nFibonacci(n) {
+  if (n === 0) {
+    return 0
+  } else if (n === 1) {
+    return 1
+  } else {
+    return nFibonacci(n - 1) + nFibonacci(n - 2)
+  }
+  // 
+  // Forma de la profe
+  // if (n < 0) return false;
+
+  // if (n < 2) return n
+
+  // return nFibonacci(n + 1) + nFibonacci(n + 1)
+
+}
+console.log(nFibonacci(7));
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
   - enqueue: agrega un valor respetando el orden.
   - dequeue: remueve un valor respetando el orden. Retorna undefined cuando la queue está vacía.
   - size: retorna el tamaño (cantidad de elementos) de la queue.
-
+ 
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {}
+function Queue() {
+  this.elements = []
+
+  // agregar al final del array 
+  this.enqueue = function (value) {
+    this.elements.push(value);
+  };
+
+  // remueve un valor respetando el orden.
+  this.dequeue = function () {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.elements.shift();
+  };
+
+  // devolver los elementos
+  this.size = function () {
+    return this.elements.length;
+  };
+
+  // Vacia?
+  this.isEmpty = function () {
+    return this.size() === 0;
+  };
+}
+
+const miQueue = new Queue();
+miQueue.enqueue(1);
+miQueue.enqueue(2);
+miQueue.enqueue(3);
+console.log(miQueue.size());
+console.log(miQueue.dequeue());
+console.log(miQueue.size());
+
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
 module.exports = {
-   Queue,
-   nFactorial,
-   nFibonacci,
+  Queue,
+  nFactorial,
+  nFibonacci,
 };
