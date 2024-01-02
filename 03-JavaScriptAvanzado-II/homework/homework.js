@@ -121,3 +121,46 @@ module.exports = {
   textoGuiones,
   textoUnderscore,
 };
+
+let tragos = {
+  trago1:{nombre:'m',cantidadVendida:26},
+  trago2:{nombre:'r',cantidadVendida:4},
+  trago4:{nombre:'t',cantidadVendida:100},
+}
+
+function encontrarTragoPopular(tragos, tragosVendidos = false) {
+  // Tu código aquí:
+  let tragosMasVendido = null
+  let cantidadMasVendida = -1
+
+  for (const key in tragos) {
+
+    if (typeof tragos[key] === 'object') {
+
+      const { masVendido: tragoSupGrupo } = encontrarTragoPopular(tragos[key]);
+
+      if (tragoSupGrupo) {
+
+        tragosVendidos = true
+
+        if (tragosMasVendido === -1 || tragos[key].cantidadVendida > cantidadMasVendida) {
+
+          tragosMasVendido = key;
+
+          cantidadMasVendida = tragos[key].cantidadVendida
+
+        }
+
+      }
+
+    }
+
+  }
+  if (tragosVendidos) {
+    tragos[tragosMasVendido].tragosVendidos = true
+  }
+  return { tragosMasVendido, tragosVendidos }
+
+}
+
+encontrarTragoPopular(tragos)

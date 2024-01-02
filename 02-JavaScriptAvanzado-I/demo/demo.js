@@ -23,7 +23,9 @@
 
 // function foo(){
 //     var y = 20;
-    
+// }
+
+
 
 //     console.log(x);//10
 //     console.log(y);//20
